@@ -25,17 +25,19 @@ constructor(private val newsRepository: NewsRepository,
 
     private val _headlines: MutableLiveData<State<HeadlinesResponse>> = MutableLiveData()
     val headlines: LiveData<State<HeadlinesResponse>> = _headlines
-    var category = ""
+
+    private val _all_news: MutableLiveData<State<HeadlinesResponse>> = MutableLiveData()
+    val all_news: LiveData<State<HeadlinesResponse>> = _all_news
+    var category = "business"
 
     fun getHeadlines(){
         viewModelScope.launch{
             _headlines.postValue(State.Loading())
-            _headlines.postValue(getStateMachedResponse(newsRepository.getHeadlines()))
+            _headlines.postValue(getStateMatchedResponse(newsRepository.getHeadlines()))
         }
     }
 
     fun getCategories() : ArrayList<Category>{
-
         var categories = ArrayList<Category>()
         categories.add(Category("Business","business"))
         categories.add(Category("Entertainment","entertainment"))
@@ -45,10 +47,16 @@ constructor(private val newsRepository: NewsRepository,
         categories.add(Category("Sport","sport"))
 
         return categories
-
     }
 
-    private fun getStateMachedResponse(response: Response<HeadlinesResponse>): State<HeadlinesResponse> {
+    fun getAllNews(){
+        viewModelScope.launch{
+            _all_news.postValue(State.Loading())
+            _all_news.postValue(getStateMatchedResponse(newsRepository.getAllNews(category)))
+        }
+    }
+
+    private fun getStateMatchedResponse(response: Response<HeadlinesResponse>): State<HeadlinesResponse> {
         if (response.isSuccessful) {
             response.body()?.let { headlinesResponse ->
                 return State.Success( headlinesResponse)

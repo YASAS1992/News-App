@@ -15,12 +15,7 @@ class HeadlineAdapter:RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>()
 
     fun setData(data:ArrayList<Article>){
         this.data = data
-        try {
-            notifyDataSetChanged()
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
-
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadlineViewHolder {
@@ -49,6 +44,6 @@ class HeadlineAdapter:RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>()
 
     }
 
-    class HeadlineViewHolder(var binding: HeadlineListItemBinding):RecyclerView.ViewHolder(binding.root)
+    inner class HeadlineViewHolder(var binding: HeadlineListItemBinding):RecyclerView.ViewHolder(binding.root)
 
 }

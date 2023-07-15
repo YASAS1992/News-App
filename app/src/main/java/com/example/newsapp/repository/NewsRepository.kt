@@ -6,6 +6,7 @@ import javax.inject.Inject
 class NewsRepository @Inject constructor(
     private val newsApi: NewsApi
 ) {
-    suspend fun getHeadlines() =
-        newsApi.getTopHeadlines()
+    suspend fun getHeadlines() = newsApi.getHeadlines()
+
+    suspend fun getAllNews(query: String = "") = newsApi.getAllNews(query)
 }

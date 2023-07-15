@@ -12,6 +12,7 @@ import com.example.newsapp.R
 import com.example.newsapp.State
 import com.example.newsapp.adapters.CategoryAdapter
 import com.example.newsapp.adapters.HeadlineAdapter
+import com.example.newsapp.adapters.NewsAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.viewmodel.HomeViewModel
 
@@ -21,6 +22,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var headlineAdapter: HeadlineAdapter
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var newsAdapter: NewsAdapter
 
     companion object fun newInstance() : HomeFragment? {
         return HomeFragment()
@@ -33,6 +35,7 @@ class HomeFragment : Fragment() {
         categoryAdapter = CategoryAdapter(requireContext(),viewModel){
 
         }
+        newsAdapter = NewsAdapter()
     }
 
     override fun onCreateView(
@@ -50,6 +53,24 @@ class HomeFragment : Fragment() {
         viewModel.getHeadlines()
         observeHeadlines()
         populateCategories()
+        viewModel.getAllNews()
+        observeAllNews()
+    }
+
+    private fun observeAllNews() {
+        viewModel.all_news.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is State.Error -> {
+
+                }
+                is State.Loading -> {
+
+                }
+                is State.Success -> {
+                    newsAdapter.setData(it.response!!.articles)
+                }
+            }
+        })
     }
 
     private fun populateCategories() {
@@ -81,6 +102,11 @@ class HomeFragment : Fragment() {
         binding.rvCategories.apply {
             layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
             adapter = categoryAdapter
+        }
+
+        binding.rvLatest.apply {
+            layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+            adapter = newsAdapter
         }
     }
 }
