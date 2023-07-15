@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.State
+import com.example.newsapp.data.Category
 import com.example.newsapp.data.HeadlinesResponse
 import com.example.newsapp.repository.NewsRepository
 import com.google.gson.Gson
@@ -24,6 +25,7 @@ constructor(private val newsRepository: NewsRepository,
 
     private val _headlines: MutableLiveData<State<HeadlinesResponse>> = MutableLiveData()
     val headlines: LiveData<State<HeadlinesResponse>> = _headlines
+    var category = ""
 
     fun getHeadlines(){
         viewModelScope.launch{
@@ -32,10 +34,18 @@ constructor(private val newsRepository: NewsRepository,
         }
     }
 
-    fun getCategories(){
-        viewModelScope.launch {
+    fun getCategories() : ArrayList<Category>{
 
-        }
+        var categories = ArrayList<Category>()
+        categories.add(Category("Business","business"))
+        categories.add(Category("Entertainment","entertainment"))
+        categories.add(Category("General","general"))
+        categories.add(Category("Health","health"))
+        categories.add(Category("Science","science"))
+        categories.add(Category("Sport","sport"))
+
+        return categories
+
     }
 
     private fun getStateMachedResponse(response: Response<HeadlinesResponse>): State<HeadlinesResponse> {

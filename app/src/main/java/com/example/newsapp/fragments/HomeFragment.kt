@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
 import com.example.newsapp.State
+import com.example.newsapp.adapters.CategoryAdapter
 import com.example.newsapp.adapters.HeadlineAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.viewmodel.HomeViewModel
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var headlineAdapter: HeadlineAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
 
     companion object fun newInstance() : HomeFragment? {
         return HomeFragment()
@@ -28,6 +30,9 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         headlineAdapter = HeadlineAdapter()
+        categoryAdapter = CategoryAdapter(requireContext(),viewModel){
+
+        }
     }
 
     override fun onCreateView(
@@ -44,6 +49,11 @@ class HomeFragment : Fragment() {
         initiateRecyclerViews()
         viewModel.getHeadlines()
         observeHeadlines()
+        populateCategories()
+    }
+
+    private fun populateCategories() {
+        categoryAdapter.setData(viewModel.getCategories())
     }
 
     private fun observeHeadlines() {
@@ -66,6 +76,11 @@ class HomeFragment : Fragment() {
         binding.rvHeadlines.apply {
             layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
             adapter = headlineAdapter
+        }
+
+        binding.rvCategories.apply {
+            layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+            adapter = categoryAdapter
         }
     }
 }
