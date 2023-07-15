@@ -49,4 +49,9 @@ dependencies {
     // Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // SDP
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    // SSP
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 }
