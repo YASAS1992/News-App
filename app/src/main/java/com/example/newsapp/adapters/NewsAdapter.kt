@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.newsapp.activities.NewsActivity
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.NewsItemBinding
+import com.example.newsapp.utill.TextFormatter
 import java.util.ArrayList
 
 class NewsAdapter(
@@ -42,7 +43,7 @@ class NewsAdapter(
 
         holder.binding.tvAuthor.text = article.author
         holder.binding.tvTitle.text = article.title
-        holder.binding.tvDate.text = article.publishedAt
+        holder.binding.tvDate.text = TextFormatter.customDateFormatter(article.publishedAt,"yyyy-MM-dd'T'HH:mm:ss'Z'","EEEE, d MMMM yyyy")
 
         holder.itemView.setOnClickListener {
             val i = Intent(context, NewsActivity::class.java)

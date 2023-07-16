@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.newsapp.State
+import com.example.newsapp.utill.State
 import com.example.newsapp.data.Category
 import com.example.newsapp.data.HeadlinesResponse
 import com.example.newsapp.repository.NewsRepository

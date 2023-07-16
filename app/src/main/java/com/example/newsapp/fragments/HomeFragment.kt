@@ -1,7 +1,6 @@
 package com.example.newsapp.fragments
 
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,14 +9,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.R
-import com.example.newsapp.State
+import com.example.newsapp.utill.State
 import com.example.newsapp.activities.MainActivity
 import com.example.newsapp.adapters.CategoryAdapter
 import com.example.newsapp.adapters.HeadlineAdapter
@@ -89,6 +85,7 @@ class HomeFragment : Fragment() {
 
         binding.ivClose.setOnClickListener {
             binding.tvSearch.clearFocus()
+            viewModel.getAllNews()
         }
 
         return binding.root

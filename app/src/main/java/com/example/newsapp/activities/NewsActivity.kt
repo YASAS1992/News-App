@@ -13,6 +13,7 @@ import com.example.newsapp.BaseActivity
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.ActivityNewsBinding
+import com.example.newsapp.utill.TextFormatter
 import com.example.newsapp.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +46,7 @@ class NewsActivity : BaseActivity() {
                 }
             })
 
-        binding.tvDate.text = article.publishedAt
+        binding.tvDate.text = TextFormatter.customDateFormatter(article.publishedAt,"yyyy-MM-dd'T'HH:mm:ss'Z'","EEEE, d MMMM yyyy")
         binding.tvTitle.text = article.title
         binding.tvAuthor.text = "${getString(R.string.published_by)} ${article.author }}"
         binding.tvContent.text = article.content
