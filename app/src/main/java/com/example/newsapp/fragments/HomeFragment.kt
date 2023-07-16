@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.R
 import com.example.newsapp.utill.State
 import com.example.newsapp.activities.MainActivity
 import com.example.newsapp.adapters.CategoryAdapter
@@ -20,6 +21,7 @@ import com.example.newsapp.adapters.HeadlineAdapter
 import com.example.newsapp.adapters.NewsAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.viewmodel.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment() {
 
@@ -88,6 +90,10 @@ class HomeFragment : Fragment() {
             viewModel.getAllNews()
         }
 
+        binding.btnSeeAll.setOnClickListener {
+            mainActivity.navigatesToHotUpdates()
+        }
+
         return binding.root
     }
 
@@ -111,7 +117,8 @@ class HomeFragment : Fragment() {
         viewModel.all_news.observe(viewLifecycleOwner, Observer {
             when(it){
                 is State.Error -> {
-
+                    Snackbar.make(binding.root, R.string.something_went_wrong, Snackbar.LENGTH_SHORT)
+                        .show()
                 }
                 is State.Loading -> {
 
@@ -132,7 +139,8 @@ class HomeFragment : Fragment() {
         viewModel.headlines.observe(viewLifecycleOwner, Observer {
             when(it){
                 is State.Error -> {
-
+                    Snackbar.make(binding.root, R.string.something_went_wrong, Snackbar.LENGTH_SHORT)
+                        .show()
                 }
                 is State.Loading -> {
 

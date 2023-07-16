@@ -1,5 +1,6 @@
 package com.example.newsapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
@@ -34,5 +35,10 @@ class MainActivity : BaseActivity() {
         val bottomNavigation = binding.btmNav
         var navController = Navigation.findNavController(this, R.id.host_fragment)
         NavigationUI.setupWithNavController(bottomNavigation,navController)
+    }
+
+    fun navigatesToHotUpdates() {
+        val intent = Intent(this, HotUpdateActivity::class.java)
+        startActivity(intent)
     }
 }

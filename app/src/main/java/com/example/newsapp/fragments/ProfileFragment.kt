@@ -60,8 +60,11 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             mainActivity.getApp().settings!!.getUser().collect{
                 viewModel.getUser(it!!).observe(viewLifecycleOwner, Observer { users ->
-                    binding.tvUsername.text = "Username : ${users[0].username}"
-                    binding.tvEmail.text = "Email : ${users[0].email}"
+                    if (users.size>0){
+                        binding.tvUsername.text = "Username : ${users[0].username}"
+                        binding.tvEmail.text = "Email : ${users[0].email}"
+                    }
+
                 })
             }
         }

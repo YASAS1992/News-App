@@ -65,5 +65,9 @@ class NewsActivity : BaseActivity() {
             Snackbar.make(binding.root, R.string.fav_save_success, Snackbar.LENGTH_SHORT)
                 .show()
         }
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 }

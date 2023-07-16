@@ -32,6 +32,10 @@ class RegisterActivity : BaseActivity() {
             viewModel.validateFields(binding.etUsername.text.toString(),binding.etEmail.text.toString(),binding.etPassword.text.toString(),binding.etConfPassword.text.toString())
         }
 
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+
         viewModel.user_name_validation.observe(this, Observer {
             binding.etUsername.error = it
         })
