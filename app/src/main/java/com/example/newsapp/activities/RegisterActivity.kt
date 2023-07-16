@@ -22,7 +22,7 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        hideKeyBoard(binding.root)
         binding.etLogin.setOnClickListener {
             val i = Intent(this,LoginActivity::class.java)
             startActivity(i)

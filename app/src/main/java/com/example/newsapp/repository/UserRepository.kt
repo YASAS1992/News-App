@@ -13,4 +13,6 @@ constructor(
     fun loginUser(username:String) = db.userDao().getUser(username)
 
     fun getAllUsers() = db.userDao().getAllUser()
+
+    fun getUser(user:String) = db.userDao().getUser(user)
 }

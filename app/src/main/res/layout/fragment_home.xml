@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:id="@+id/root">
 
     <LinearLayout
         android:id="@+id/lytSearchBar"
@@ -16,10 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/searchViewWidget"
+            android:id="@+id/tvSearch"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
-            android:layout_margin="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+
             android:layout_weight="1"
             android:background="@drawable/search_bar_bg"
             android:drawableEnd="@drawable/ic_search"
@@ -31,11 +36,13 @@
             android:textColorHint="@color/search_bar_hint_text_color" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:background="@drawable/ic_notofication"/>
+            android:background="@drawable/ic_close"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/_16sdp"/>
 
     </LinearLayout>
 
@@ -74,10 +81,13 @@
                     android:id="@+id/tvSeeAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
                     android:text="@string/see_all"
                     android:textColor="@color/secondary"
-                    android:textSize="16sp"
-                    android:layout_margin="@dimen/_4sdp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/ivSeeAll"

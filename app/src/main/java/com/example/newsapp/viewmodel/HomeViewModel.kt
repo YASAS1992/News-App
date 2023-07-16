@@ -51,6 +51,13 @@ constructor(private val newsRepository: NewsRepository,
         return categories
     }
 
+    fun getNewsSearch(query:String){
+        viewModelScope.launch{
+            _all_news.postValue(State.Loading())
+            _all_news.postValue(getStateMatchedResponse(newsRepository.getAllNews(query)))
+        }
+    }
+
     fun getAllNews(){
         viewModelScope.launch{
             _all_news.postValue(State.Loading())
