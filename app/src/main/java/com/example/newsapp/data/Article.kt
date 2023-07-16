@@ -2,9 +2,14 @@ package com.example.newsapp.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "articles")
 data class Article(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     val author: String?,
     val content: String?,
     val description: String?,
@@ -15,6 +20,7 @@ data class Article(
     val urlToImage: String?
 ):Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -27,6 +33,7 @@ data class Article(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id!!)
         parcel.writeString(author)
         parcel.writeString(content)
         parcel.writeString(description)

@@ -45,6 +45,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    apply plugin: 'kotlin-kapt'
 
 //    Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -69,6 +70,12 @@ dependencies {
 
 //    HTTP Logging Interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+//    Room DB
+    implementation("androidx.room:room-runtime:2.5.2")
+    annotationProcessor("androidx.room:room-compiler:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
 }
 
 // Allow references to generated code

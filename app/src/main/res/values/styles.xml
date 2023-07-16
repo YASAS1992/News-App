@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SolidButtonStyle" parent="Widget.AppCompat.Button">
+        <!-- Apply custom attributes for the button -->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_solid_bg</item>
+        <!-- Add more custom attributes as needed -->
+    </style>
+
+    <style name="StrokeButtonStyle" parent="Widget.AppCompat.Button">
+        <!-- Apply custom attributes for the button -->
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:background">@drawable/btn_stroke_bg</item>
+        <!-- Add more custom attributes as needed -->
+    </style>
+</resources>
