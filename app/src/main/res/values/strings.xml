@@ -8,4 +8,5 @@
     <string name="search">Search</string>
     <string name="latest_news">Latest News</string>
     <string name="see_all">See All</string>
+    <string name="published_by">Published by</string>
 </resources>

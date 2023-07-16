@@ -28,7 +28,9 @@ constructor(private val newsRepository: NewsRepository,
 
     private val _all_news: MutableLiveData<State<HeadlinesResponse>> = MutableLiveData()
     val all_news: LiveData<State<HeadlinesResponse>> = _all_news
-    var category = "business"
+
+    private val _category: MutableLiveData<String> = MutableLiveData()
+    val category: LiveData<String> = _category
 
     fun getHeadlines(){
         viewModelScope.launch{
@@ -52,7 +54,7 @@ constructor(private val newsRepository: NewsRepository,
     fun getAllNews(){
         viewModelScope.launch{
             _all_news.postValue(State.Loading())
-            _all_news.postValue(getStateMatchedResponse(newsRepository.getAllNews(category)))
+            _all_news.postValue(getStateMatchedResponse(newsRepository.getAllNews(category.value!!)))
         }
     }
 
@@ -72,6 +74,10 @@ constructor(private val newsRepository: NewsRepository,
     private fun getErrorMessage(response: String?): String {
         val jobj: JsonObject = Gson().fromJson(response, JsonObject::class.java)
         return jobj["message"].toString()
+    }
+
+    fun getNewsByCategory(category: String) {
+       _category.postValue(category)
     }
 
 }

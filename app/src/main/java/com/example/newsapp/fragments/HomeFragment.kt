@@ -31,11 +31,11 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        headlineAdapter = HeadlineAdapter()
+        headlineAdapter = HeadlineAdapter(requireContext())
         categoryAdapter = CategoryAdapter(requireContext(),viewModel){
 
         }
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(requireContext())
     }
 
     override fun onCreateView(
@@ -53,8 +53,14 @@ class HomeFragment : Fragment() {
         viewModel.getHeadlines()
         observeHeadlines()
         populateCategories()
-        viewModel.getAllNews()
+        observeCategory()
         observeAllNews()
+    }
+
+    private fun observeCategory() {
+        viewModel.category.observe(viewLifecycleOwner, Observer {
+            viewModel.getAllNews()
+        })
     }
 
     private fun observeAllNews() {
@@ -75,6 +81,7 @@ class HomeFragment : Fragment() {
 
     private fun populateCategories() {
         categoryAdapter.setData(viewModel.getCategories())
+        viewModel.getNewsByCategory("business")
     }
 
     private fun observeHeadlines() {

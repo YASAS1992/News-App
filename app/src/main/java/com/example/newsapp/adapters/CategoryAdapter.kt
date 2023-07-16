@@ -1,6 +1,7 @@
 package com.example.newsapp.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +37,10 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var category = data[position]
         holder.binding.tvCategory.text = category.name
-        if (viewModel.category == category.code){
+
+        Log.e("VAL",viewModel.category.value.toString())
+
+        if (viewModel.category.value == category.code || (viewModel.category.value == null && category.code == "business")){
             holder.binding.tvCategory.setBackgroundResource(R.drawable.category_select_bg)
             holder.binding.tvCategory.setTextColor(context.resources.getColor(R.color.white))
         }else{
@@ -45,7 +49,7 @@ class CategoryAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            viewModel.category = category.code
+            viewModel.getNewsByCategory(category.code)
             notifyDataSetChanged()
         }
     }
