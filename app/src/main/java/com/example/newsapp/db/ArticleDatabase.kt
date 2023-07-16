@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.newsapp.AppConstants
 import com.example.newsapp.data.Article
 import com.example.newsapp.data.User
 
@@ -27,7 +28,7 @@ abstract class ArticleDatabase : RoomDatabase(){
                 INSTANCE = Room.databaseBuilder(
                     context,
                     ArticleDatabase::class.java,
-                    "article_db"
+                    AppConstants.USER_DB
                 ).fallbackToDestructiveMigration()
                     .build()
             }

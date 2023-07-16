@@ -1,6 +1,7 @@
 package com.example.newsapp.di
 
 import android.content.Context
+import com.example.newsapp.AppConstants
 import com.example.newsapp.AppSettings
 import com.example.newsapp.db.ArticleDatabase
 import com.example.newsapp.retrofit.NewsApi
@@ -30,7 +31,7 @@ object NewsModules {
             .addInterceptor(interceptor)
             .build()
         return Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl(AppConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
