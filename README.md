@@ -25,4 +25,4 @@ Datastore
 Dagger Hilt
 Github
 
-Repository - 
+Repository - https://github.com/YASAS1992/News-App.git
