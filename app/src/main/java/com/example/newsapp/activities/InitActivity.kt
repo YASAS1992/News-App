@@ -3,10 +3,11 @@ package com.example.newsapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.newsapp.BaseActivity
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityInitBinding
 
-class InitActivity : AppCompatActivity() {
+class InitActivity : BaseActivity() {
 
     lateinit var binding: ActivityInitBinding
 

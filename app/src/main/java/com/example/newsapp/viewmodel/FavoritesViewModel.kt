@@ -22,6 +22,6 @@ constructor(private val favoritesRepository : FavoritesRepository,
             application: Application
 ): AndroidViewModel(application){
 
-    fun getAllNews() = favoritesRepository.getSavedNews()
+    fun getAllNews(user:String) = favoritesRepository.getSavedNews(user)
 
 }

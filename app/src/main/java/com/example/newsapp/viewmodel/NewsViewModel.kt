@@ -16,7 +16,8 @@ constructor(private val favoritesRepository: FavoritesRepository,
                     application: Application
 ): AndroidViewModel(application) {
 
-    fun saveNewsArticle(article: Article) = viewModelScope.launch {
+    fun saveNewsArticle(article: Article,user:String) = viewModelScope.launch {
+        article.user = user
         favoritesRepository.insertFavorite(article)
     }
 

@@ -11,5 +11,5 @@ constructor(
 ) {
     suspend fun insertFavorite(article: Article) = db.articleDao().upsertArticle(article)
 
-    fun getSavedNews() = db.articleDao().getAllArticles()
+    fun getSavedNews(user:String) = db.articleDao().getAllArticles(user)
 }

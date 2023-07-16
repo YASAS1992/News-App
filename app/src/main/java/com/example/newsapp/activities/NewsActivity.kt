@@ -4,19 +4,23 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.newsapp.BaseActivity
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.ActivityNewsBinding
 import com.example.newsapp.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NewsActivity : AppCompatActivity() {
+class NewsActivity : BaseActivity() {
 
     lateinit var binding: ActivityNewsBinding
     private val viewModel : NewsViewModel by viewModels()
@@ -51,7 +55,12 @@ class NewsActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener {
-            viewModel.saveNewsArticle(article)
+            lifecycleScope.launch {
+                getApp().settings!!.getUser().collect{
+                    viewModel.saveNewsArticle(article, it!!)
+                }
+            }
+
             Snackbar.make(binding.root, R.string.fav_save_success, Snackbar.LENGTH_SHORT)
                 .show()
         }

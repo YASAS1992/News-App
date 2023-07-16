@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.newsapp.BaseActivity
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityRegisterBinding
 import com.example.newsapp.viewmodel.RegisterViewModel
@@ -12,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     lateinit var binding: ActivityRegisterBinding
     private val viewModel : RegisterViewModel by viewModels()
@@ -47,6 +48,8 @@ class RegisterActivity : AppCompatActivity() {
             Snackbar.make(binding.root, R.string.register_success, Snackbar.LENGTH_SHORT)
                 .show()
 
+            val i = Intent(this,LoginActivity::class.java)
+            startActivity(i)
         })
     }
 }

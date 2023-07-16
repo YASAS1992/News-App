@@ -23,4 +23,7 @@
     <string name="register_success">Successfully Registered.</string>
     <string name="register_now">Register Now</string>
     <string name="login_to_read">Login to read</string>
+    <string name="no_user_found">No User Found</string>
+    <string name="invalid_username_or_password">Invalid username or password</string>
+    <string name="logout">Logout</string>
 </resources>

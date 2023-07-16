@@ -10,6 +10,7 @@ import java.io.Serializable
 data class Article(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
+    var user:String? = "",
     val author: String?,
     val content: String?,
     val description: String?,
@@ -25,6 +26,7 @@ data class Article(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readParcelable(Source::class.java.classLoader),
         parcel.readString(),
         parcel.readString(),
@@ -34,6 +36,7 @@ data class Article(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id!!)
+        parcel.writeString(user)
         parcel.writeString(author)
         parcel.writeString(content)
         parcel.writeString(description)

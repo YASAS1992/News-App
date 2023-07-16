@@ -10,5 +10,7 @@ constructor(
 ) {
     suspend fun registerUser(user: User) = db.userDao().insertUser(user)
 
-    fun loginUser(username:String,password:String) = db.userDao().getUser(username,password)
+    fun loginUser(username:String) = db.userDao().getUser(username)
+
+    fun getAllUsers() = db.userDao().getAllUser()
 }

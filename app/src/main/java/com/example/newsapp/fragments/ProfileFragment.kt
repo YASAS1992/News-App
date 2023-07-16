@@ -5,44 +5,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.newsapp.R
+import com.example.newsapp.activities.MainActivity
+import com.example.newsapp.databinding.FragmentProfileBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProfileFragment : Fragment() {
 
+    lateinit var binding:FragmentProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    lateinit var mainActivity:MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
+        mainActivity = activity as MainActivity
+        binding.btnLogut.setOnClickListener {
+            lifecycleScope.launch {
+                mainActivity.getApp().settings!!.removeUser()
+                withContext(Dispatchers.Main) {
+                    mainActivity.launchInit()
+                }
+            }
+        }
+
+        return binding.root
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        Log.e("API RES - >", "Start")
-//        RetrofitInstance.api.getTopHeadlines("us","fbf190a3c3c64a928d2666901df2c5ea").enqueue(object : Callback<HeadlinesResponse>{
-//            override fun onResponse(
-//                call: Call<HeadlinesResponse>,
-//                response: Response<HeadlinesResponse>
-//            ) {
-//                if(response.body() != null){
-//                    Log.e("API RES - >", response.body()!!.articles[0].description)
-//                }else{
-//                    return
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<HeadlinesResponse>, t: Throwable) {
-//                Log.e("API RES - >", "FAILED")
-//            }
-//
-//        })
 
     }
 

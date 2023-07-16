@@ -1,6 +1,7 @@
 package com.example.newsapp.di
 
 import android.content.Context
+import com.example.newsapp.AppSettings
 import com.example.newsapp.db.ArticleDatabase
 import com.example.newsapp.retrofit.NewsApi
 import dagger.Module
@@ -41,5 +42,11 @@ object NewsModules {
     fun provideNewsDatabase(@ApplicationContext appContext: Context): ArticleDatabase {
         return ArticleDatabase.getInstance(appContext)
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideNewsDataStore(@ApplicationContext appContext: Context): AppSettings {
+//        return AppSettings(appContext)
+//    }
 
 }
